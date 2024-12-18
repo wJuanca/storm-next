@@ -11,9 +11,9 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row items-center justify-between">
           {/* Left Content */}
           <div className="max-w-xl">
-            <h1 className="text-8xl font-bold mb-8">STORM</h1>
+            <h1 className="font-bebas-neue text-8xl font-bold mb-8">STORM</h1>
 
-            <p className="text-gray-300 text-lg mb-10 leading-relaxed">
+            <p className="font-montserrat text-gray-300 text-lg mb-10 leading-relaxed">
               En Storm, te equipamos para enfrentar cualquier desafío. Descubre
               nuestra colección de ropa y calzado deportivo diseñada para
               potenciar tu rendimiento y estilo, tanto dentro como fuera del
