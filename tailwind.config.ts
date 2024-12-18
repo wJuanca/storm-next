@@ -16,6 +16,9 @@ export default {
         'bebas-neue': ['var(--font-bebas-neue)'],
         'montserrat': ['var(--font-montserrat)'],
       },
+      borderRadius: {
+        'custom': '20px',
+      },
     },
   },
   plugins: [],

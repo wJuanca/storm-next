@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function Navbar() {
   return (
-    <nav className="bg-black text-white py-4">
+    <nav className="bg-black text-white py-4 font-montserrat">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-center space-x-8">
           {/* Left side menu items */}
