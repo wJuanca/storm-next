@@ -8,12 +8,9 @@ import AddToCartButton from './AddToCartButton';
 export default function ProductDetails({ product }: { product: Product }) {
   const [selectedImage, setSelectedImage] = useState<string>(product.image);
 
-  const images = [
-    product.image,
-    product.image2,
-    product.image3,
-    product.image4,
-  ].filter(Boolean) as string[];
+  const images = [product.image, product.image2, product.image3, product.image4]
+  .filter((image): image is string => Boolean(image)); // Filtrar valores nulos o undefined
+
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

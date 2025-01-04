@@ -16,8 +16,13 @@ async function getProduct(id: string): Promise<Product | null> {
   return null;
 }
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-  const product = await getProduct(params.id);
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default async function ProductPage({ params }: PageProps) {
+  const resolvedParams = await params;
+  const product = await getProduct(resolvedParams.id);
 
   if (!product) {
     notFound();
@@ -33,4 +38,3 @@ export default async function ProductPage({ params }: { params: { id: string } }
     </div>
   );
 }
-
