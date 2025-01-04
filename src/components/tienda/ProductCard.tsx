@@ -1,12 +1,12 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image";
+import Link from "next/link";
 
 interface Product {
-  id: number
-  name: string
-  description: string
-  price: number
-  image: string
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
 }
 
 export default function ProductCard({ product }: { product: Product }) {
@@ -27,6 +27,5 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
       </div>
     </Link>
-  )
+  );
 }
-
