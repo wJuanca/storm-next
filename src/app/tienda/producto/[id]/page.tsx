@@ -1,38 +1,36 @@
-// /app/tienda/[id]/page.tsx
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/app/lib/firebase";
-import Image from "next/image";
+import { Suspense } from 'react';
+import { notFound } from 'next/navigation';
+import { getDoc, doc } from 'firebase/firestore';
+import { db } from '@/app/lib/firebase';
+import ProductDetails from './ProducDetails';
+import { Product } from '@/app/tienda/types';
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-  const docRef = doc(db, "products", params.id);
+async function getProduct(id: string): Promise<Product | null> {
+  const docRef = doc(db, 'products', id);
   const docSnap = await getDoc(docRef);
 
-  if (!docSnap.exists()) {
-    return <div>Producto no encontrado</div>;
+  if (docSnap.exists()) {
+    return { id: docSnap.id, ...docSnap.data() as Omit<Product, 'id'> };
   }
 
-  const product = docSnap.data();
+  return null;
+}
+
+export default async function ProductPage({ params }: { params: { id: string } }) {
+  const product = await getProduct(params.id);
+
+  if (!product) {
+    notFound();
+  }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-4">
-            <Image
-              src={product.image}
-              alt={product.name}
-              width={600}
-              height={600}
-              className="w-full rounded-lg"
-            />
-          </div>
-          <div>
-            <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-            <p className="text-gray-400 mb-4">{product.description}</p>
-            <p className="text-2xl font-bold mb-4">${product.price.toFixed(2)}</p>
-          </div>
-        </div>
+        <Suspense fallback={<div>Cargando...</div>}>
+          <ProductDetails product={product} />
+        </Suspense>
       </div>
     </div>
   );
 }
+
