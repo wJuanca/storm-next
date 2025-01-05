@@ -40,6 +40,7 @@ export default function ProductDetails({ product }: { product: Product }) {
       <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold mb-4 text-blue-400">{product.name}</h1>
         <p className="text-gray-300 mb-4 leading-relaxed">{product.description}</p>
+        <p className="text-xl font-semibold mb-4 text-yellow-300">Categoría: {product.category}</p>
         <p className="text-3xl font-bold mb-4 text-green-400">${product.price.toFixed(2)}</p>
 
         {product.sizes && (
