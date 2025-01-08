@@ -13,8 +13,10 @@ export default function ProductDetails({ product }: { product: Product }) {
 
 
   return (
+    
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div className="space-y-4">
+        
         <Image
           src={selectedImage}
           alt={product.name}
