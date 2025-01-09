@@ -1,10 +1,10 @@
 import Image from 'next/image'
 
 const teamMembers = [
-  { name: "Alex Rivera", role: "Fundador y CEO", image: "/placeholder.svg?height=200&width=200" },
-  { name: "Sam Chen", role: "Director Creativo", image: "/placeholder.svg?height=200&width=200" },
-  { name: "Zoe Patel", role: "Jefa de Innovación Tecnológica", image: "/placeholder.svg?height=200&width=200" },
-  { name: "Lena Kim", role: "Directora de Sostenibilidad", image: "/placeholder.svg?height=200&width=200" }
+  { name: "Alex Rivera", role: "Fundador y CEO", image: "/img/team1.jpg" },
+  { name: "Sam Chen", role: "Director Creativo", image: "/img/team2.jpg" },
+  { name: "Zoe Patel", role: "Jefa de Innovación Tecnológica", image: "/img/team3.jpg" },
+  { name: "Lena Kim", role: "Directora de Sostenibilidad", image: "/img/team4.jpg" }
 ]
 
 export default function TeamGrid() {
