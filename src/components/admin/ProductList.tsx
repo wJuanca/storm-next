@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore'
-import { db } from '@/app/lib/firebase';
+import { db } from '@/app/lib/firebase'
 import { useSearchParams } from 'next/navigation'
 
 interface Product {
@@ -83,23 +83,21 @@ export default function ProductList() {
 
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full bg-white">
+      <table className="min-w-full bg-white text-black">
         <thead>
           <tr>
-            <th className="px-4 py-2 text-black">Nombre</th>
-            <th className="px-4 py-2 text-black">Categoría</th>
-            <th className="px-4 py-2 text-black">Descripcion</th>
-            <th className="px-4 py-2 text-black">Precio</th>
-            <th className="px-4 py-2 text-black">Acciones</th>
+            <th className="px-4 py-2">Nombre</th>
+            <th className="px-4 py-2">Categoría</th>
+            <th className="px-4 py-2">Precio</th>
+            <th className="px-4 py-2">Acciones</th>
           </tr>
         </thead>
         <tbody>
           {products.map(product => (
             <tr key={product.id} className={product.hidden ? 'bg-gray-200' : ''}>
-              <td className="border px-4 py-2 text-black">{product.name}</td>
-              <td className="border px-4 py-2 text-black">{product.category}</td>
-              <td className="border px-4 py-2 text-black">{product.description}</td>
-              <td className="border px-4 py-2 text-black">${product.price.toFixed(2)}</td>
+              <td className="border px-4 py-2">{product.name}</td>
+              <td className="border px-4 py-2">{product.category}</td>
+              <td className="border px-4 py-2">${product.price.toFixed(2)}</td>
               <td className="border px-4 py-2">
                 <button
                   onClick={() => toggleHidden(product.id, product.hidden)}

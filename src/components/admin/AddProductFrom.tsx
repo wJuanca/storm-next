@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { addDoc, collection } from 'firebase/firestore'
-import { db } from '@/app/lib/firebase';
+import { db } from '@/app/lib/firebase'
 
 export default function AddProductForm() {
   const [product, setProduct] = useState<{
@@ -27,41 +27,46 @@ export default function AddProductForm() {
     sizes: [],
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setProduct(prev => ({ ...prev, [name]: name === 'price' ? parseFloat(value) : value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setProduct((prev) => ({
+      ...prev,
+      [name]: name === "price" ? parseFloat(value) : value,
+    }));
+  };
 
   const handleSizesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const sizes = e.target.value.split(',').map(size => size.trim())
-    setProduct(prev => ({ ...prev, sizes }))
-  }
+    const sizes = e.target.value.split(",").map((size) => size.trim());
+    setProduct((prev) => ({ ...prev, sizes }));
+  };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const habdleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
-      await addDoc(collection(db, 'products'), product)
-      alert('Producto agregado con éxito')
+      await addDoc(collection(db, "products"), product);
+      alert("El producto se agregó correctamente");
       setProduct({
-        name: '',
-        category: '',
-        description: '',
-        image: '',
-        image2: '',
-        image3: '',
-        image4: '',
+        name: "",
+        category: "",
+        description: "",
+        image: "",
+        image2: "",
+        image3: "",
+        image4: "",
         price: 0,
         sizes: [],
-      })
+      });
     } catch (error) {
-      console.error('Error al agregar el producto:', error)
-      alert('Error al agregar el producto')
+      console.error("Error al agregar el producto", error);
+      alert("Error al agregar el producto");
     }
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-8 p-4 bg-white shadow rounded text-black">
-      <div className="grid grid-cols-2 gap-4 ">
+    <form onSubmit={habdleSubmit} className="mb-8 p-4 bg-white shadow rounded">
+      <div className="grid grid-cols-2 gap-4 text-black">
         <input
           type="text"
           name="name"
@@ -104,6 +109,7 @@ export default function AddProductForm() {
           onChange={handleChange}
           placeholder="URL de la imagen 2"
           className="border p-2 rounded"
+          required
         />
         <input
           type="text"
@@ -133,17 +139,19 @@ export default function AddProductForm() {
         <input
           type="text"
           name="sizes"
-          value={product.sizes.join(', ')}
+          value={product.sizes.join(", ")}
           onChange={handleSizesChange}
-          placeholder="Tallas (separadas por comas)"
+          placeholder="Tallas (separadas por coma)"
           className="border p-2 rounded"
           required
         />
       </div>
-      <button type="submit" className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+      <button
+        type="submit"
+        className="mt-4 bg-blue-500 text-white p-2 rounded haver:bg-blue-600"
+      >
         Agregar Producto
       </button>
     </form>
-  )
+  );
 }
-
