@@ -5,11 +5,12 @@ import Timeline from "@/components/nosotros/Timeline";
 import TeamGrid from "@/components/nosotros/TeamGrid";
 import { Button } from "@/components/nosotros/Button";
 import Image from "next/image"; 
+import Footer from "@/components/Footer";
 
 
 export default function NosotrosPage() {
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="min-h-screen bg-black text-white">
       {/* Navbar */}
       <Navbar />
 
@@ -127,6 +128,7 @@ export default function NosotrosPage() {
           <Button size="lg">Explora Nuestra Colección</Button>
         </div>
       </AnimatedSection>
+      <Footer />
     </main>
     </div>
   )
