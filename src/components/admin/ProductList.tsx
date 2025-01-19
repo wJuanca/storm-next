@@ -81,6 +81,7 @@ export default function ProductList() {
     }
   };
 
+  /*Tabla de las donde se muestran los productos*/
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white text-black">
@@ -122,6 +123,8 @@ export default function ProductList() {
           ))}
         </tbody>
       </table>
+
+
       {editingProduct && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full text-black">
           <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">

@@ -27,8 +27,17 @@ export default function AddProductForm() {
     sizes: [],
   })
 
+  const categories = [
+    'Ropa Deportiva',
+    'Zapatos',
+    'Accesorios',
+    'Hombre',
+    'Mujer',
+    'Niños',
+  ];
+
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setProduct((prev) => ({
@@ -42,7 +51,7 @@ export default function AddProductForm() {
     setProduct((prev) => ({ ...prev, sizes }));
   };
 
-  const habdleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await addDoc(collection(db, "products"), product);
@@ -65,7 +74,7 @@ export default function AddProductForm() {
   };
 
   return (
-    <form onSubmit={habdleSubmit} className="mb-8 p-4 bg-white shadow rounded">
+    <form onSubmit={handleSubmit} className="mb-8 p-4 bg-white shadow rounded">
       <div className="grid grid-cols-2 gap-4 text-black">
         <input
           type="text"
@@ -76,15 +85,22 @@ export default function AddProductForm() {
           className="border p-2 rounded"
           required
         />
-        <input
-          type="text"
+        <select
           name="category"
           value={product.category}
           onChange={handleChange}
-          placeholder="Categoría"
           className="border p-2 rounded"
           required
-        />
+        >
+          <option value="" disabled>
+            Selecciona una categoría
+          </option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
         <textarea
           name="description"
           value={product.description}
@@ -148,7 +164,7 @@ export default function AddProductForm() {
       </div>
       <button
         type="submit"
-        className="mt-4 bg-blue-500 text-white p-2 rounded haver:bg-blue-600"
+        className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
       >
         Agregar Producto
       </button>
